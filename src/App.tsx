@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import styled from "styled-components";
+import HabitHeader from "./components/HabitHeader";
+import HabitItemList from "./components/HabitItemList";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Wrapper>
+      <Header>Habit Tracker</Header>
+      <Main>
+        {/* header for list */}
+        <HabitHeader />
+        {/* habit title */}
+        {/* habit status */}
+        {/* habit item list */}
+        <HabitItemList />
+        {/* habit title */}
+        {/* habit status */}
+      </Main>
+    </Wrapper>
   );
 }
 
 export default App;
+
+const Wrapper = styled.div`
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+const Header = styled.header`
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 30px;
+`;
+
+const Main = styled.main``;
