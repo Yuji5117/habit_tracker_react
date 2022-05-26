@@ -9,7 +9,10 @@ function App() {
     { id: 1, title: "test", status: 1 },
     { id: 2, title: "test2", status: 1 },
     { id: 3, title: "test3", status: 1 },
+    { id: 4, title: "test4", status: 1 },
+    { id: 5, title: "test5", status: 1 },
   ]);
+
   return (
     <Wrapper>
       <Header>Habit Tracker</Header>

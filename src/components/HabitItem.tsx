@@ -10,8 +10,10 @@ interface PropsType {
 const HabitItem = ({ habit }: PropsType) => {
   return (
     <Wrapper>
-      <HabitTitle />
-      <div>Status</div>
+      <TitleBlock>
+        <Title>{habit.title}</Title>
+      </TitleBlock>
+      <StatusBlock>Status</StatusBlock>
     </Wrapper>
   );
 };
@@ -21,5 +23,18 @@ export default HabitItem;
 const Wrapper = styled.div`
   height: 70px;
   display: flex;
-  background-color: #313543;
+  background-color: #555375;
+`;
+
+const TitleBlock = styled.div`
+  width: 40%;
+`;
+
+const Title = styled.div`
+  font-size: 24px;
+  color: white;
+`;
+
+const StatusBlock = styled.div`
+  width: 60%;
 `;
