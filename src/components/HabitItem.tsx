@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { Habit } from "../typings";
-import HabitTitle from "./HabitTitle";
 
 interface PropsType {
   habit: Habit;
