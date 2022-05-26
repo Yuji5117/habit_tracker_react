@@ -5,6 +5,7 @@ import HabitItemList from "./components/HabitItemList";
 import { Habit } from "./typings";
 
 function App() {
+  const [habit, setHabit] = useState<Habit>();
   const [habits, setHabits] = useState<Habit[]>([
     { id: 1, title: "test", status: 1 },
     { id: 2, title: "test2", status: 1 },
@@ -13,10 +14,31 @@ function App() {
     { id: 5, title: "test5", status: 1 },
   ]);
 
+  const onChangeTitleInput = (e: any) => {
+    console.log(e.target.value);
+
+    const id = habits.length;
+    setHabit({ id: id, title: e.target.value, status: 0 });
+  };
+
+  const addHabit = (e: any) => {
+    e.preventDefault();
+
+    if (!habit) return;
+    setHabits([...habits, habit]);
+  };
+
   return (
     <Wrapper>
       <Header>Habit Tracker</Header>
       <Main>
+        <form>
+          <input onChange={onChangeTitleInput} type="text" />
+          <button onClick={addHabit} type="submit">
+            追加
+          </button>
+        </form>
+
         <HabitHeader />
         <HabitItemList habits={habits} />
       </Main>
