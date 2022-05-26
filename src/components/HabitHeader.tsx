@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import styled from "styled-components";
 
 const HabitHeader = () => {
-  return (
-    <div>HabitHeader</div>
-  )
-}
+  return <Wrapepr>HabitHeader</Wrapepr>;
+};
 
-export default HabitHeader
+export default HabitHeader;
+
+const Wrapepr = styled.div`
+  height: 50px;
+`;

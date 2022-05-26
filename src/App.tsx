@@ -1,21 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import HabitHeader from "./components/HabitHeader";
 import HabitItemList from "./components/HabitItemList";
+import { Habit } from "./typings";
 
 function App() {
+  const [habits, setHabits] = useState<Habit[]>([
+    { id: 1, title: "test", status: 1 },
+    { id: 2, title: "test2", status: 1 },
+    { id: 3, title: "test3", status: 1 },
+  ]);
   return (
     <Wrapper>
       <Header>Habit Tracker</Header>
       <Main>
-        {/* header for list */}
         <HabitHeader />
-        {/* habit title */}
-        {/* habit status */}
-        {/* habit item list */}
-        <HabitItemList />
-        {/* habit title */}
-        {/* habit status */}
+        <HabitItemList habits={habits} />
       </Main>
     </Wrapper>
   );
@@ -24,7 +24,7 @@ function App() {
 export default App;
 
 const Wrapper = styled.div`
-  width: 80%;
+  width: 60%;
   margin-left: auto;
   margin-right: auto;
 `;
@@ -35,4 +35,6 @@ const Header = styled.header`
   margin-bottom: 30px;
 `;
 
-const Main = styled.main``;
+const Main = styled.main`
+  background-color: #282c37;
+`;
