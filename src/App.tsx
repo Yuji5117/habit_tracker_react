@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import Form from "./components/HabitForm";
 import HabitHeader from "./components/HabitHeader";
 import HabitItemList from "./components/HabitItemList";
 import { Habit } from "./typings";
@@ -14,11 +15,7 @@ function App() {
     { id: 5, title: "test5", status: 1 },
   ]);
 
-  const onChangeTitleInput = (e: any) => {
-    setHabitTitle(e.target.value);
-  };
-
-  const addHabit = (e: any) => {
+  const addHabit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (!habitTitle) return;
 
@@ -27,19 +24,24 @@ function App() {
     setHabitTitle("");
   };
 
+  const onChangeTitleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setHabitTitle(e.target.value);
+  };
+
   return (
     <Wrapper>
       <Header>Habit Tracker</Header>
       <Main>
-        <form>
-          <input onChange={onChangeTitleInput} type="text" value={habitTitle} />
-          <button onClick={addHabit} type="submit">
-            追加
-          </button>
-        </form>
+        <Form
+          habitTitle={habitTitle}
+          addHabit={addHabit}
+          onChangeTitleInput={onChangeTitleInput}
+        />
 
-        <HabitHeader />
-        <HabitItemList habits={habits} />
+        <Section>
+          <HabitHeader />
+          <HabitItemList habits={habits} />
+        </Section>
       </Main>
     </Wrapper>
   );
@@ -60,5 +62,9 @@ const Header = styled.header`
 `;
 
 const Main = styled.main`
+  /* background-color: #282c37; */
+`;
+
+const Section = styled.section`
   background-color: #282c37;
 `;
