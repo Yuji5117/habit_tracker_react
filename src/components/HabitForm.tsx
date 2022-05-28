@@ -1,13 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import { Action } from "../typings";
 
 interface PropsType {
   habitTitle: string;
-  addHabit: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  dispatch: (action: Action) => void;
   onChangeTitleInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const HabitForm = ({ habitTitle, addHabit, onChangeTitleInput }: PropsType) => {
+const HabitForm = ({ habitTitle, dispatch, onChangeTitleInput }: PropsType) => {
   return (
     <Form>
       <Input
@@ -16,7 +17,12 @@ const HabitForm = ({ habitTitle, addHabit, onChangeTitleInput }: PropsType) => {
         type="text"
         value={habitTitle}
       />
-      <Button onClick={addHabit} type="submit">
+      <Button
+        onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+          dispatch({ type: "ADD_HABIT", habitTitle, event: e })
+        }
+        type="submit"
+      >
         追加
       </Button>
     </Form>
