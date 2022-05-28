@@ -7,6 +7,8 @@ import HabitHeader from "./components/HabitHeader";
 import HabitItemList from "./components/HabitItemList";
 import { Habit } from "./typings";
 
+const today = dayjs();
+
 function App() {
   const [habitTitle, setHabitTitle] = useState<string>("");
   const [habits, setHabits] = useState<Habit[]>([
@@ -17,7 +19,8 @@ function App() {
     { id: 5, title: "test5", status: 1 },
   ]);
 
-  const today = dayjs();
+  const [startDayOfWeek, setStartDayOfWeek] = useState(today.startOf("week"));
+  const [endDayOfWeek, setEndDayOfWeek] = useState(today.endOf("week"));
 
   const addHabit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -32,6 +35,16 @@ function App() {
     setHabitTitle(e.target.value);
   };
 
+  const movePreviousWeek = () => {
+    setStartDayOfWeek(startDayOfWeek.subtract(1, "w").startOf("week"));
+    setEndDayOfWeek(endDayOfWeek.subtract(1, "w").endOf("week"));
+  };
+
+  const moveNextWeek = () => {
+    setStartDayOfWeek(startDayOfWeek.add(1, "w").startOf("week"));
+    setEndDayOfWeek(endDayOfWeek.add(1, "w").endOf("week"));
+  };
+
   return (
     <Wrapper>
       <Header>Habit Tracker</Header>
@@ -43,7 +56,12 @@ function App() {
         />
 
         <Section>
-          <HabitHeader today={today} />
+          <HabitHeader
+            startDayOfWeek={startDayOfWeek}
+            endDayOfWeek={endDayOfWeek}
+            movePreviousWeek={movePreviousWeek}
+            moveNextWeek={moveNextWeek}
+          />
           <HabitItemList habits={habits} />
         </Section>
       </Main>

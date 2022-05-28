@@ -1,41 +1,35 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
+import { IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowForward } from "react-icons/io";
+
 interface PropsType {
-  today: any;
+  startDayOfWeek: any;
+  endDayOfWeek: any;
+  movePreviousWeek: () => void;
+  moveNextWeek: () => void;
 }
 
-const weekDays = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-
-const HabitHeader = ({ today }: PropsType) => {
-  const [startDayOfWeek, setStartDayOfWeek] = useState(today.startOf("week"));
-  const [endDayOfWeek, setEndDayOfWeek] = useState(today.endOf("week"));
-
-  const movePreviousWeek = () => {
-    setStartDayOfWeek(startDayOfWeek.subtract(1, "w").startOf("week"));
-    setEndDayOfWeek(endDayOfWeek.subtract(1, "w").endOf("week"));
-  };
-
-  const moveNextWeek = () => {
-    setStartDayOfWeek(startDayOfWeek.add(1, "w").startOf("week"));
-    setEndDayOfWeek(endDayOfWeek.add(1, "w").endOf("week"));
-  };
+const HabitHeader = ({
+  startDayOfWeek,
+  endDayOfWeek,
+  movePreviousWeek,
+  moveNextWeek,
+}: PropsType) => {
+  const weekDays = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
   return (
     <Wrapepr>
       <TitleBlock>
+        <IoIosArrowBack onClick={movePreviousWeek} />
         <Title>
-          <button type="button" onClick={movePreviousWeek}>
-            前
-          </button>
           Date：
           {`${startDayOfWeek.format("YYYY/MM/DD")} ~ ${endDayOfWeek.format(
             "YYYY/MM/DD"
           )}`}
-          <button type="button" onClick={moveNextWeek}>
-            次
-          </button>
         </Title>
+        <IoIosArrowForward onClick={moveNextWeek} />
       </TitleBlock>
       <StatusBlock>
         <StatusWeekDay>
@@ -61,12 +55,17 @@ const Wrapepr = styled.div`
 
 const TitleBlock = styled.div`
   width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
 `;
 
 const Title = styled.div`
   font-size: 18px;
+  padding-right: 5px;
+  padding-left: 5px;
   color: white;
-  padding-left: 20px;
 `;
 
 const StatusBlock = styled.div`
