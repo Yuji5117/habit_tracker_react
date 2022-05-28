@@ -1,21 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import dayjs from "dayjs";
 
-const HabitHeader = () => {
-  const weekDays = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-  const today = dayjs();
-  const startDayOfWeek = today.startOf("week");
-  const endDayOfWeek = today.endOf("week");
+interface PropsType {
+  today: any;
+}
+
+const weekDays = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+
+const HabitHeader = ({ today }: PropsType) => {
+  const [startDayOfWeek, setStartDayOfWeek] = useState(today.startOf("week"));
+  const [endDayOfWeek, setEndDayOfWeek] = useState(today.endOf("week"));
+
+  const movePreviousWeek = () => {
+    setStartDayOfWeek(startDayOfWeek.subtract(1, "w").startOf("week"));
+    setEndDayOfWeek(endDayOfWeek.subtract(1, "w").endOf("week"));
+  };
+
+  const moveNextWeek = () => {
+    setStartDayOfWeek(startDayOfWeek.add(1, "w").startOf("week"));
+    setEndDayOfWeek(endDayOfWeek.add(1, "w").endOf("week"));
+  };
 
   return (
     <Wrapepr>
       <TitleBlock>
         <Title>
+          <button type="button" onClick={movePreviousWeek}>
+            前
+          </button>
           Date：
           {`${startDayOfWeek.format("YYYY/MM/DD")} ~ ${endDayOfWeek.format(
             "YYYY/MM/DD"
           )}`}
+          <button type="button" onClick={moveNextWeek}>
+            次
+          </button>
         </Title>
       </TitleBlock>
       <StatusBlock>

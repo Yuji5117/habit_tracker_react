@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import dayjs from "dayjs";
+
 import Form from "./components/HabitForm";
 import HabitHeader from "./components/HabitHeader";
 import HabitItemList from "./components/HabitItemList";
@@ -14,6 +16,8 @@ function App() {
     { id: 4, title: "test4", status: 1 },
     { id: 5, title: "test5", status: 1 },
   ]);
+
+  const today = dayjs();
 
   const addHabit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -39,7 +43,7 @@ function App() {
         />
 
         <Section>
-          <HabitHeader />
+          <HabitHeader today={today} />
           <HabitItemList habits={habits} />
         </Section>
       </Main>
