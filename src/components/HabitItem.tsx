@@ -46,6 +46,7 @@ export default HabitItem;
 const Wrapper = styled.div`
   height: 70px;
   display: flex;
+  align-items: center;
   background-color: #555375;
 `;
 
@@ -56,6 +57,7 @@ const TitleBlock = styled.div`
 const Title = styled.div`
   font-size: 24px;
   color: white;
+  padding-left: 20px;
 `;
 
 const StatusBlock = styled.div`

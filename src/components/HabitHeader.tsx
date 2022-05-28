@@ -37,6 +37,7 @@ export default HabitHeader;
 const Wrapepr = styled.div`
   height: 50px;
   display: flex;
+  align-items: center;
 `;
 
 const TitleBlock = styled.div`
@@ -46,6 +47,7 @@ const TitleBlock = styled.div`
 const Title = styled.div`
   font-size: 18px;
   color: white;
+  padding-left: 20px;
 `;
 
 const StatusBlock = styled.div`
