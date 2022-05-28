@@ -12,7 +12,31 @@ const HabitItem = ({ habit }: PropsType) => {
       <TitleBlock>
         <Title>{habit.title}</Title>
       </TitleBlock>
-      <StatusBlock>Status</StatusBlock>
+      <StatusBlock>
+        <StatusWeekDay>
+          <StatusDay>
+            <input type="checkbox" />
+          </StatusDay>
+          <StatusDay>
+            <input type="checkbox" />
+          </StatusDay>
+          <StatusDay>
+            <input type="checkbox" />
+          </StatusDay>
+          <StatusDay>
+            <input type="checkbox" />
+          </StatusDay>
+          <StatusDay>
+            <input type="checkbox" />
+          </StatusDay>
+          <StatusDay>
+            <input type="checkbox" />
+          </StatusDay>
+          <StatusDay>
+            <input type="checkbox" />
+          </StatusDay>
+        </StatusWeekDay>
+      </StatusBlock>
     </Wrapper>
   );
 };
@@ -36,4 +60,14 @@ const Title = styled.div`
 
 const StatusBlock = styled.div`
   width: 60%;
+  text-align: center;
+`;
+
+const StatusWeekDay = styled.ul`
+  display: flex;
+  flex-direction: row;
+`;
+
+const StatusDay = styled.li`
+  width: 70px;
 `;
