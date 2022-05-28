@@ -36,7 +36,7 @@ const ItemList = styled.ul`
   display: flex;
   flex-direction: column;
 
-  * + * {
+  > * + * {
     padding-top: 5px;
   }
 `;

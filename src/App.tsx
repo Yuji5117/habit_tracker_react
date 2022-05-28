@@ -61,9 +61,7 @@ const Header = styled.header`
   margin-bottom: 30px;
 `;
 
-const Main = styled.main`
-  /* background-color: #282c37; */
-`;
+const Main = styled.main``;
 
 const Section = styled.section`
   background-color: #282c37;
