@@ -11,6 +11,10 @@ export type Action =
       event: React.MouseEvent<HTMLButtonElement>;
     }
   | {
+      type: "UPDATE_HABIT";
+      // habitId: number;
+    }
+  | {
       type: "DELETE_HABIT";
       habitId: number;
     };

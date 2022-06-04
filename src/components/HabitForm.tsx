@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { addHabit } from "../actions/habitsAction";
 import { Action } from "../typings";
 
 interface PropsType {
@@ -19,7 +20,7 @@ const HabitForm = ({ habitTitle, dispatch, onChangeTitleInput }: PropsType) => {
       />
       <Button
         onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
-          dispatch({ type: "ADD_HABIT", habitTitle, event: e })
+          dispatch(addHabit(e, habitTitle))
         }
         type="submit"
       >

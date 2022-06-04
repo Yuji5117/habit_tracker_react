@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Action, Habit } from "../typings";
 
 import { MdDeleteOutline } from "react-icons/md";
+import { deleteHabit } from "../actions/habitsAction";
 
 interface PropsType {
   habit: Habit;
@@ -40,9 +41,7 @@ const HabitItem = ({ habit, dispatch }: PropsType) => {
           </StatusDay>
         </StatusWeekDay>
       </StatusBlock>
-      <DeleteBlock
-        onClick={() => dispatch({ type: "DELETE_HABIT", habitId: habit.id })}
-      >
+      <DeleteBlock onClick={() => dispatch(deleteHabit(habit.id))}>
         <MdDeleteOutline size={20} color={"red"} />
       </DeleteBlock>
     </Wrapper>

@@ -5,7 +5,8 @@ import dayjs from "dayjs";
 import HabitForm from "./components/HabitForm";
 import HabitHeader from "./components/HabitHeader";
 import HabitItemList from "./components/HabitItemList";
-import { Action, Habit } from "./typings";
+import { Habit } from "./typings";
+import { habitsReducer } from "./reducer/habitsReducer";
 
 const today = dayjs();
 
@@ -17,23 +18,9 @@ const initialState: Habit[] = [
   { id: 5, title: "test5", status: 1 },
 ];
 
-const reducer = (state: Habit[], action: Action): any => {
-  if (action.type === "ADD_HABIT") {
-    action.event.preventDefault();
-    if (!action.habitTitle) return state;
-    return [
-      ...state,
-      { id: state.length + 1, title: action.habitTitle, status: 0 },
-    ];
-  }
-  if (action.type === "DELETE_HABIT") {
-    return state.filter((habit) => habit.id !== action.habitId);
-  }
-};
-
 function App() {
+  const [habits, dispatch] = useReducer(habitsReducer, initialState);
   const [habitTitle, setHabitTitle] = useState<string>("");
-  const [habits, dispatch] = useReducer(reducer, initialState);
 
   const [startDayOfWeek, setStartDayOfWeek] = useState(today.startOf("week"));
   const [endDayOfWeek, setEndDayOfWeek] = useState(today.endOf("week"));
