@@ -2,19 +2,20 @@ import React from "react";
 import styled from "styled-components";
 import HabitItem from "./HabitItem";
 
-import { Habit } from "../typings";
+import { Action, Habit } from "../typings";
 
 interface PropsType {
   habits: Habit[];
+  dispatch: (action: Action) => void;
 }
 
-const HabitItemList = ({ habits }: PropsType) => {
+const HabitItemList = ({ habits, dispatch }: PropsType) => {
   return (
     <Wrapper>
       <ItemList>
         {habits.map((habit) => (
           <Item key={habit.id}>
-            <HabitItem habit={habit} />
+            <HabitItem habit={habit} dispatch={dispatch} />
           </Item>
         ))}
       </ItemList>

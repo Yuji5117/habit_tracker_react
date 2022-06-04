@@ -1,12 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import { Habit } from "../typings";
+import { Action, Habit } from "../typings";
+
+import { MdDeleteOutline } from "react-icons/md";
 
 interface PropsType {
   habit: Habit;
+  dispatch: (action: Action) => void;
 }
 
-const HabitItem = ({ habit }: PropsType) => {
+const HabitItem = ({ habit, dispatch }: PropsType) => {
   return (
     <Wrapper>
       <TitleBlock>
@@ -37,6 +40,11 @@ const HabitItem = ({ habit }: PropsType) => {
           </StatusDay>
         </StatusWeekDay>
       </StatusBlock>
+      <DeleteBlock
+        onClick={() => dispatch({ type: "DELETE_HABIT", habitId: habit.id })}
+      >
+        <MdDeleteOutline size={20} color={"red"} />
+      </DeleteBlock>
     </Wrapper>
   );
 };
@@ -61,7 +69,7 @@ const Title = styled.div`
 `;
 
 const StatusBlock = styled.div`
-  width: 60%;
+  width: 55%;
   text-align: center;
 `;
 
@@ -72,4 +80,8 @@ const StatusWeekDay = styled.ul`
 
 const StatusDay = styled.li`
   width: 70px;
+`;
+
+const DeleteBlock = styled.div`
+  width: 5%;
 `;

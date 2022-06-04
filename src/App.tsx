@@ -26,6 +26,9 @@ const reducer = (state: Habit[], action: Action): any => {
       { id: state.length + 1, title: action.habitTitle, status: 0 },
     ];
   }
+  if (action.type === "DELETE_HABIT") {
+    return state.filter((habit) => habit.id !== action.habitId);
+  }
 };
 
 function App() {
@@ -70,7 +73,7 @@ function App() {
             movePreviousWeek={movePreviousWeek}
             moveNextWeek={moveNextWeek}
           />
-          <HabitItemList habits={habits} />
+          <HabitItemList habits={habits} dispatch={dispatch} />
         </Section>
       </Main>
     </Wrapper>

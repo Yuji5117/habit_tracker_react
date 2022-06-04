@@ -4,8 +4,13 @@ export interface Habit {
   status: number;
 }
 
-export type Action = {
-  type: "ADD_HABIT";
-  habitTitle: string;
-  event: React.MouseEvent<HTMLButtonElement>;
-};
+export type Action =
+  | {
+      type: "ADD_HABIT";
+      habitTitle: string;
+      event: React.MouseEvent<HTMLButtonElement>;
+    }
+  | {
+      type: "DELETE_HABIT";
+      habitId: number;
+    };

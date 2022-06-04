@@ -41,6 +41,7 @@ const HabitHeader = ({
           ))}
         </StatusWeekDay>
       </StatusBlock>
+      <DeleteBlock></DeleteBlock>
     </Wrapepr>
   );
 };
@@ -69,7 +70,7 @@ const Title = styled.div`
 `;
 
 const StatusBlock = styled.div`
-  width: 60%;
+  width: 55%;
 `;
 
 const StatusWeekDay = styled.ul`
@@ -81,4 +82,8 @@ const StatusDay = styled.li`
   width: 70px;
   color: white;
   text-align: center;
+`;
+
+const DeleteBlock = styled.div`
+  width: 5%;
 `;
