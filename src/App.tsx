@@ -1,12 +1,13 @@
 import React, { useEffect, useState, useReducer } from "react";
 import styled from "styled-components";
-import dayjs from "dayjs";
 
 import HabitForm from "./components/HabitForm";
 import HabitHeader from "./components/HabitHeader";
 import HabitItemList from "./components/HabitItemList";
 import { Habit } from "./typings";
 import { habitsReducer } from "./reducer/habitsReducer";
+import dayjs from "dayjs";
+import { dayOfWeekReducer } from "./reducer/dayOfWeekReducer";
 
 const today = dayjs();
 
@@ -22,8 +23,10 @@ function App() {
   const [habits, dispatch] = useReducer(habitsReducer, initialState);
   const [habitTitle, setHabitTitle] = useState<string>("");
 
-  const [startDayOfWeek, setStartDayOfWeek] = useState(today.startOf("week"));
-  const [endDayOfWeek, setEndDayOfWeek] = useState(today.endOf("week"));
+  const [dayOfWeek, dayOfWeekDispatch] = useReducer(dayOfWeekReducer, {
+    startDay: today.startOf("week"),
+    endDay: today.endOf("week"),
+  });
 
   useEffect(() => {
     setHabitTitle("");
@@ -31,16 +34,6 @@ function App() {
 
   const onChangeTitleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setHabitTitle(e.target.value);
-  };
-
-  const movePreviousWeek = () => {
-    setStartDayOfWeek(startDayOfWeek.subtract(1, "w").startOf("week"));
-    setEndDayOfWeek(endDayOfWeek.subtract(1, "w").endOf("week"));
-  };
-
-  const moveNextWeek = () => {
-    setStartDayOfWeek(startDayOfWeek.add(1, "w").startOf("week"));
-    setEndDayOfWeek(endDayOfWeek.add(1, "w").endOf("week"));
   };
 
   return (
@@ -55,10 +48,9 @@ function App() {
 
         <Section>
           <HabitHeader
-            startDayOfWeek={startDayOfWeek}
-            endDayOfWeek={endDayOfWeek}
-            movePreviousWeek={movePreviousWeek}
-            moveNextWeek={moveNextWeek}
+            startDayOfWeek={dayOfWeek.startDay}
+            endDayOfWeek={dayOfWeek.endDay}
+            dayOfWeekDispatch={dayOfWeekDispatch}
           />
           <HabitItemList habits={habits} dispatch={dispatch} />
         </Section>

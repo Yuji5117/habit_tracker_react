@@ -1,6 +1,6 @@
-import { Action, Habit } from "../typings";
+import { HabitsAction, Habit } from "../typings";
 
-export const habitsReducer = (state: Habit[], action: Action): any => {
+export const habitsReducer = (state: Habit[], action: HabitsAction): any => {
   if (action.type === "ADD_HABIT") {
     action.event.preventDefault();
     if (!action.habitTitle) return state;

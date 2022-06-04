@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import HabitItem from "./HabitItem";
 
-import { Action, Habit } from "../typings";
+import { HabitsAction, Habit } from "../typings";
 
 interface PropsType {
   habits: Habit[];
-  dispatch: (action: Action) => void;
+  dispatch: (action: HabitsAction) => void;
 }
 
 const HabitItemList = ({ habits, dispatch }: PropsType) => {

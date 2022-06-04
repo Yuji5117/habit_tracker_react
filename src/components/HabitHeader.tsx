@@ -3,33 +3,33 @@ import styled from "styled-components";
 
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
+import { DayOfWeekAction } from "../typings";
+import { moveNextWeek, movePreviousWeek } from "../actions/moveDayOfWeekAction";
 
 interface PropsType {
   startDayOfWeek: any;
   endDayOfWeek: any;
-  movePreviousWeek: () => void;
-  moveNextWeek: () => void;
+  dayOfWeekDispatch: (action: DayOfWeekAction) => void;
 }
 
 const HabitHeader = ({
   startDayOfWeek,
   endDayOfWeek,
-  movePreviousWeek,
-  moveNextWeek,
+  dayOfWeekDispatch,
 }: PropsType) => {
   const weekDays = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
   return (
     <Wrapepr>
       <TitleBlock>
-        <IoIosArrowBack onClick={movePreviousWeek} />
+        <IoIosArrowBack onClick={() => dayOfWeekDispatch(movePreviousWeek())} />
         <Title>
           Date：
           {`${startDayOfWeek.format("YYYY/MM/DD")} ~ ${endDayOfWeek.format(
             "YYYY/MM/DD"
           )}`}
         </Title>
-        <IoIosArrowForward onClick={moveNextWeek} />
+        <IoIosArrowForward onClick={() => dayOfWeekDispatch(moveNextWeek())} />
       </TitleBlock>
       <StatusBlock>
         <StatusWeekDay>

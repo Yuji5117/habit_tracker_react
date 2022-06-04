@@ -1,13 +1,13 @@
 import React from "react";
-import { Action } from "./../typings.d";
+import { HabitsAction } from "./../typings.d";
 
 export const addHabit = (
   event: React.MouseEvent<HTMLButtonElement>,
   habitTitle: string
-): Action => {
+): HabitsAction => {
   return { type: "ADD_HABIT", habitTitle, event };
 };
 
-export const deleteHabit = (habitId: number): Action => {
+export const deleteHabit = (habitId: number): HabitsAction => {
   return { type: "DELETE_HABIT", habitId };
 };

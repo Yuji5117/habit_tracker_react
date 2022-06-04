@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { Action, Habit } from "../typings";
+import { HabitsAction, Habit } from "../typings";
 
 import { MdDeleteOutline } from "react-icons/md";
 import { deleteHabit } from "../actions/habitsAction";
 
 interface PropsType {
   habit: Habit;
-  dispatch: (action: Action) => void;
+  dispatch: (action: HabitsAction) => void;
 }
 
 const HabitItem = ({ habit, dispatch }: PropsType) => {

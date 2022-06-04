@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { addHabit } from "../actions/habitsAction";
-import { Action } from "../typings";
+import { HabitsAction } from "../typings";
 
 interface PropsType {
   habitTitle: string;
-  dispatch: (action: Action) => void;
+  dispatch: (action: HabitsAction) => void;
   onChangeTitleInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
