@@ -8,6 +8,14 @@ export const addHabit = (
   return { type: "ADD_HABIT", habitTitle, event };
 };
 
+export const updateTitle = (
+  event: React.MouseEvent<HTMLButtonElement>,
+  habitId: number,
+  habitTitle: string
+): HabitsAction => {
+  return { type: "UPDATE_TITLE", habitId, habitTitle, event };
+};
+
 export const deleteHabit = (habitId: number): HabitsAction => {
   return { type: "DELETE_HABIT", habitId };
 };

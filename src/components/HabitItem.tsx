@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { HabitsAction, Habit } from "../typings";
 
 import { MdDeleteOutline } from "react-icons/md";
-import { deleteHabit } from "../actions/habitsAction";
+import { AiOutlineEdit } from "react-icons/ai";
+import { deleteHabit, updateTitle } from "../actions/habitsAction";
 
 interface PropsType {
   habit: Habit;
@@ -11,10 +12,48 @@ interface PropsType {
 }
 
 const HabitItem = ({ habit, dispatch }: PropsType) => {
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [title, setTitle] = useState(habit.title);
+
+  const onChangeTitle = (e: any) => {
+    e.preventDefault();
+    setTitle(e.target.value);
+  };
+
   return (
     <Wrapper>
       <TitleBlock>
-        <Title>{habit.title}</Title>
+        {!isEditMode && (
+          <>
+            <Title>{habit.title}</Title>
+            <IconBlock onClick={() => setIsEditMode(true)}>
+              <AiOutlineEdit size={20} color={"white"} />
+            </IconBlock>
+          </>
+        )}
+        {isEditMode && (
+          <form>
+            <input value={title} onChange={(e: any) => onChangeTitle(e)} />
+            <div>
+              <button
+                onClick={(e: any) => {
+                  dispatch(updateTitle(e, habit.id, title));
+                  setIsEditMode(false);
+                }}
+              >
+                Save
+              </button>
+              <button
+                onClick={() => {
+                  setIsEditMode(false);
+                  setTitle(habit.title);
+                }}
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        )}
       </TitleBlock>
       <StatusBlock>
         <StatusWeekDay>
@@ -59,12 +98,26 @@ const Wrapper = styled.div`
 
 const TitleBlock = styled.div`
   width: 40%;
+  display: flex;
+  align-items: center;
+
+  :hover {
+    > div {
+      display: block;
+    }
+  }
 `;
 
-const Title = styled.div`
+const Title = styled.p`
   font-size: 24px;
   color: white;
   padding-left: 20px;
+`;
+
+const IconBlock = styled.div`
+  padding-left: 10px;
+  display: none;
+  cursor: pointer;
 `;
 
 const StatusBlock = styled.div`
