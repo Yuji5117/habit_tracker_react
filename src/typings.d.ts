@@ -1,7 +1,12 @@
 export interface Habit {
   id: number;
   title: string;
-  status: number;
+  habitStatuses: HabitStatus[];
+}
+
+interface HabitStatus {
+  is_completed: boolean;
+  targeted_date: string;
 }
 
 export type HabitsAction =
@@ -15,6 +20,12 @@ export type HabitsAction =
       habitId: number;
       habitTitle: string;
       event: React.MouseEvent<HTMLButtonElement>;
+    }
+  | {
+      type: "UPDATE_HABIT_STATUS";
+      habitId: number;
+      habitStatus: HabitStatus;
+      event: React.ChangeEvent<HTMLInputElement>;
     }
   | {
       type: "DELETE_HABIT";

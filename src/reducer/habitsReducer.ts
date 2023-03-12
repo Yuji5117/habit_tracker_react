@@ -4,10 +4,7 @@ export const habitsReducer = (state: Habit[], action: HabitsAction): any => {
   if (action.type === "ADD_HABIT") {
     action.event.preventDefault();
     if (!action.habitTitle) return state;
-    return [
-      ...state,
-      { id: state.length + 1, title: action.habitTitle, status: 0 },
-    ];
+    return [...state, { id: state.length + 1, title: action.habitTitle }];
   }
 
   if (action.type === "UPDATE_TITLE") {
@@ -17,6 +14,23 @@ export const habitsReducer = (state: Habit[], action: HabitsAction): any => {
       if (habit.id !== action.habitId) return habit;
 
       return { ...habit, title: action.habitTitle };
+    });
+  }
+
+  if (action.type === "UPDATE_HABIT_STATUS") {
+    action.event.preventDefault();
+
+    return state.map((habit) => {
+      if (habit.id !== action.habitId) return habit;
+
+      const updatedHabitStatuses = habit.habitStatuses.map((habitStatus) => {
+        if (habitStatus.targeted_date !== action.habitStatus.targeted_date)
+          return habitStatus;
+
+        return { ...habitStatus, is_completed: !habitStatus.is_completed };
+      });
+
+      return { ...habit, habitStatuses: updatedHabitStatuses };
     });
   }
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { HabitsAction } from "./../typings.d";
+import { HabitsAction, HabitStatus } from "./../typings.d";
 
 export const addHabit = (
   event: React.MouseEvent<HTMLButtonElement>,
@@ -14,6 +14,14 @@ export const updateTitle = (
   habitTitle: string
 ): HabitsAction => {
   return { type: "UPDATE_TITLE", habitId, habitTitle, event };
+};
+
+export const updateHabitStatus = (
+  event: React.ChangeEvent<HTMLInputElement>,
+  habitId: number,
+  habitStatus: HabitStatus
+): HabitsAction => {
+  return { type: "UPDATE_HABIT_STATUS", habitId, habitStatus, event };
 };
 
 export const deleteHabit = (habitId: number): HabitsAction => {

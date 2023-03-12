@@ -4,7 +4,11 @@ import { HabitsAction, Habit } from "../typings";
 
 import { MdDeleteOutline } from "react-icons/md";
 import { AiOutlineEdit } from "react-icons/ai";
-import { deleteHabit, updateTitle } from "../actions/habitsAction";
+import {
+  deleteHabit,
+  updateHabitStatus,
+  updateTitle,
+} from "../actions/habitsAction";
 
 interface PropsType {
   habit: Habit;
@@ -15,7 +19,7 @@ const HabitItem = ({ habit, dispatch }: PropsType) => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [title, setTitle] = useState(habit.title);
 
-  const onChangeTitle = (e: any) => {
+  const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setTitle(e.target.value);
   };
@@ -33,10 +37,15 @@ const HabitItem = ({ habit, dispatch }: PropsType) => {
         )}
         {isEditMode && (
           <form>
-            <input value={title} onChange={(e: any) => onChangeTitle(e)} />
+            <input
+              value={title}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                onChangeTitle(e)
+              }
+            />
             <div>
               <button
-                onClick={(e: any) => {
+                onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                   dispatch(updateTitle(e, habit.id, title));
                   setIsEditMode(false);
                 }}
@@ -57,27 +66,17 @@ const HabitItem = ({ habit, dispatch }: PropsType) => {
       </TitleBlock>
       <StatusBlock>
         <StatusWeekDay>
-          <StatusDay>
-            <input type="checkbox" />
-          </StatusDay>
-          <StatusDay>
-            <input type="checkbox" />
-          </StatusDay>
-          <StatusDay>
-            <input type="checkbox" />
-          </StatusDay>
-          <StatusDay>
-            <input type="checkbox" />
-          </StatusDay>
-          <StatusDay>
-            <input type="checkbox" />
-          </StatusDay>
-          <StatusDay>
-            <input type="checkbox" />
-          </StatusDay>
-          <StatusDay>
-            <input type="checkbox" />
-          </StatusDay>
+          {habit.habitStatuses.map((habitStatus, index) => (
+            <StatusDay key={index}>
+              <input
+                type="checkbox"
+                checked={habitStatus.is_completed}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  dispatch(updateHabitStatus(e, habit.id, habitStatus));
+                }}
+              />
+            </StatusDay>
+          ))}
         </StatusWeekDay>
       </StatusBlock>
       <DeleteBlock onClick={() => dispatch(deleteHabit(habit.id))}>
