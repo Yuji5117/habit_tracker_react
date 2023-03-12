@@ -12,11 +12,71 @@ import { dayOfWeekReducer } from "./reducer/dayOfWeekReducer";
 const today = dayjs();
 
 const initialState: Habit[] = [
-  { id: 1, title: "test", status: 1 },
-  { id: 2, title: "test2", status: 1 },
-  { id: 3, title: "test3", status: 1 },
-  { id: 4, title: "test4", status: 1 },
-  { id: 5, title: "test5", status: 1 },
+  {
+    id: 1,
+    title: "test",
+    habitStatuses: [
+      { is_completed: true, targeted_date: "2023-03-05" },
+      { is_completed: true, targeted_date: "2023-03-06" },
+      { is_completed: true, targeted_date: "2023-03-07" },
+      { is_completed: false, targeted_date: "2023-03-08" },
+      { is_completed: false, targeted_date: "2023-03-09" },
+      { is_completed: false, targeted_date: "2023-03-10" },
+      { is_completed: false, targeted_date: "2023-03-11" },
+    ],
+  },
+  {
+    id: 2,
+    title: "test2",
+    habitStatuses: [
+      { is_completed: true, targeted_date: "2023-03-05" },
+      { is_completed: true, targeted_date: "2023-03-06" },
+      { is_completed: true, targeted_date: "2023-03-07" },
+      { is_completed: false, targeted_date: "2023-03-08" },
+      { is_completed: false, targeted_date: "2023-03-09" },
+      { is_completed: false, targeted_date: "2023-03-10" },
+      { is_completed: false, targeted_date: "2023-03-11" },
+    ],
+  },
+  {
+    id: 3,
+    title: "test3",
+    habitStatuses: [
+      { is_completed: true, targeted_date: "2023-03-05" },
+      { is_completed: true, targeted_date: "2023-03-06" },
+      { is_completed: true, targeted_date: "2023-03-07" },
+      { is_completed: false, targeted_date: "2023-03-08" },
+      { is_completed: false, targeted_date: "2023-03-09" },
+      { is_completed: false, targeted_date: "2023-03-10" },
+      { is_completed: false, targeted_date: "2023-03-11" },
+    ],
+  },
+  {
+    id: 4,
+    title: "test4",
+    habitStatuses: [
+      { is_completed: true, targeted_date: "2023-03-05" },
+      { is_completed: true, targeted_date: "2023-03-06" },
+      { is_completed: true, targeted_date: "2023-03-07" },
+      { is_completed: true, targeted_date: "2023-03-08" },
+      { is_completed: false, targeted_date: "2023-03-09" },
+      { is_completed: false, targeted_date: "2023-03-10" },
+      { is_completed: false, targeted_date: "2023-03-11" },
+    ],
+  },
+  {
+    id: 5,
+    title: "test5",
+    habitStatuses: [
+      { is_completed: true, targeted_date: "2023-03-05" },
+      { is_completed: true, targeted_date: "2023-03-06" },
+      { is_completed: true, targeted_date: "2023-03-07" },
+      { is_completed: false, targeted_date: "2023-03-08" },
+      { is_completed: false, targeted_date: "2023-03-09" },
+      { is_completed: false, targeted_date: "2023-03-10" },
+      { is_completed: false, targeted_date: "2023-03-11" },
+    ],
+  },
 ];
 
 function App() {
