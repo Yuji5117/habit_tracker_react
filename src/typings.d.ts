@@ -1,7 +1,9 @@
 export interface Habit {
-  id: number;
+  habitId: number;
   title: string;
   habitStatuses: HabitStatus[];
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 interface HabitStatus {
@@ -10,6 +12,10 @@ interface HabitStatus {
 }
 
 export type HabitsAction =
+  | {
+      type: "INIT_HABIT";
+      habits: Habit[];
+    }
   | {
       type: "ADD_HABIT";
       habitTitle: string;

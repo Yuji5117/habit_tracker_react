@@ -46,7 +46,7 @@ const HabitItem = ({ habit, dispatch }: PropsType) => {
             <div>
               <button
                 onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-                  dispatch(updateTitle(e, habit.id, title));
+                  dispatch(updateTitle(e, habit.habitId, title));
                   setIsEditMode(false);
                 }}
               >
@@ -70,16 +70,17 @@ const HabitItem = ({ habit, dispatch }: PropsType) => {
             <StatusDay key={index}>
               <input
                 type="checkbox"
+                value={habitStatus.targeted_date}
                 checked={habitStatus.is_completed}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  dispatch(updateHabitStatus(e, habit.id, habitStatus));
+                  dispatch(updateHabitStatus(e, habit.habitId, habitStatus));
                 }}
               />
             </StatusDay>
           ))}
         </StatusWeekDay>
       </StatusBlock>
-      <DeleteBlock onClick={() => dispatch(deleteHabit(habit.id))}>
+      <DeleteBlock onClick={() => dispatch(deleteHabit(habit.habitId))}>
         <MdDeleteOutline size={20} color={"red"} />
       </DeleteBlock>
     </Wrapper>

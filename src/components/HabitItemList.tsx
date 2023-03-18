@@ -13,7 +13,7 @@ const HabitItemList = ({ habits, dispatch }: PropsType) => {
     <Wrapper>
       <ItemList>
         {habits.map((habit) => (
-          <Item key={habit.id}>
+          <Item key={habit.habitId}>
             <HabitItem habit={habit} dispatch={dispatch} />
           </Item>
         ))}

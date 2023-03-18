@@ -1,6 +1,10 @@
 import { HabitsAction, Habit } from "../typings";
 
 export const habitsReducer = (state: Habit[], action: HabitsAction): any => {
+  if (action.type === "INIT_HABIT") {
+    return action.habits;
+  }
+
   if (action.type === "ADD_HABIT") {
     action.event.preventDefault();
     if (!action.habitTitle) return state;
@@ -11,7 +15,7 @@ export const habitsReducer = (state: Habit[], action: HabitsAction): any => {
     action.event.preventDefault();
 
     return state.map((habit) => {
-      if (habit.id !== action.habitId) return habit;
+      if (habit.habitId !== action.habitId) return habit;
 
       return { ...habit, title: action.habitTitle };
     });
@@ -21,7 +25,7 @@ export const habitsReducer = (state: Habit[], action: HabitsAction): any => {
     action.event.preventDefault();
 
     return state.map((habit) => {
-      if (habit.id !== action.habitId) return habit;
+      if (habit.habitId !== action.habitId) return habit;
 
       const updatedHabitStatuses = habit.habitStatuses.map((habitStatus) => {
         if (habitStatus.targeted_date !== action.habitStatus.targeted_date)
@@ -35,6 +39,6 @@ export const habitsReducer = (state: Habit[], action: HabitsAction): any => {
   }
 
   if (action.type === "DELETE_HABIT") {
-    return state.filter((habit) => habit.id !== action.habitId);
+    return state.filter((habit) => habit.habitId !== action.habitId);
   }
 };

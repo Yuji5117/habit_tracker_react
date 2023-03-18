@@ -1,5 +1,9 @@
 import React from "react";
-import { HabitsAction, HabitStatus } from "./../typings.d";
+import { Habit, HabitsAction, HabitStatus } from "./../typings.d";
+
+export const initHabit = (habits: Habit[]): HabitsAction => {
+  return { type: "INIT_HABIT", habits };
+};
 
 export const addHabit = (
   event: React.MouseEvent<HTMLButtonElement>,

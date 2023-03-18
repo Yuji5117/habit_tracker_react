@@ -8,79 +8,13 @@ import { Habit } from "./typings";
 import { habitsReducer } from "./reducer/habitsReducer";
 import dayjs from "dayjs";
 import { dayOfWeekReducer } from "./reducer/dayOfWeekReducer";
+import axios from "axios";
+import { initHabit } from "./actions/habitsAction";
 
 const today = dayjs();
 
-const initialState: Habit[] = [
-  {
-    id: 1,
-    title: "test",
-    habitStatuses: [
-      { is_completed: true, targeted_date: "2023-03-05" },
-      { is_completed: true, targeted_date: "2023-03-06" },
-      { is_completed: true, targeted_date: "2023-03-07" },
-      { is_completed: false, targeted_date: "2023-03-08" },
-      { is_completed: false, targeted_date: "2023-03-09" },
-      { is_completed: false, targeted_date: "2023-03-10" },
-      { is_completed: false, targeted_date: "2023-03-11" },
-    ],
-  },
-  {
-    id: 2,
-    title: "test2",
-    habitStatuses: [
-      { is_completed: true, targeted_date: "2023-03-05" },
-      { is_completed: true, targeted_date: "2023-03-06" },
-      { is_completed: true, targeted_date: "2023-03-07" },
-      { is_completed: false, targeted_date: "2023-03-08" },
-      { is_completed: false, targeted_date: "2023-03-09" },
-      { is_completed: false, targeted_date: "2023-03-10" },
-      { is_completed: false, targeted_date: "2023-03-11" },
-    ],
-  },
-  {
-    id: 3,
-    title: "test3",
-    habitStatuses: [
-      { is_completed: true, targeted_date: "2023-03-05" },
-      { is_completed: true, targeted_date: "2023-03-06" },
-      { is_completed: true, targeted_date: "2023-03-07" },
-      { is_completed: false, targeted_date: "2023-03-08" },
-      { is_completed: false, targeted_date: "2023-03-09" },
-      { is_completed: false, targeted_date: "2023-03-10" },
-      { is_completed: false, targeted_date: "2023-03-11" },
-    ],
-  },
-  {
-    id: 4,
-    title: "test4",
-    habitStatuses: [
-      { is_completed: true, targeted_date: "2023-03-05" },
-      { is_completed: true, targeted_date: "2023-03-06" },
-      { is_completed: true, targeted_date: "2023-03-07" },
-      { is_completed: true, targeted_date: "2023-03-08" },
-      { is_completed: false, targeted_date: "2023-03-09" },
-      { is_completed: false, targeted_date: "2023-03-10" },
-      { is_completed: false, targeted_date: "2023-03-11" },
-    ],
-  },
-  {
-    id: 5,
-    title: "test5",
-    habitStatuses: [
-      { is_completed: true, targeted_date: "2023-03-05" },
-      { is_completed: true, targeted_date: "2023-03-06" },
-      { is_completed: true, targeted_date: "2023-03-07" },
-      { is_completed: false, targeted_date: "2023-03-08" },
-      { is_completed: false, targeted_date: "2023-03-09" },
-      { is_completed: false, targeted_date: "2023-03-10" },
-      { is_completed: false, targeted_date: "2023-03-11" },
-    ],
-  },
-];
-
 function App() {
-  const [habits, dispatch] = useReducer(habitsReducer, initialState);
+  const [habits, dispatch] = useReducer(habitsReducer, []);
   const [habitTitle, setHabitTitle] = useState<string>("");
 
   const [dayOfWeek, dayOfWeekDispatch] = useReducer(dayOfWeekReducer, {
@@ -90,7 +24,29 @@ function App() {
 
   useEffect(() => {
     setHabitTitle("");
-  }, [habits]);
+    const data = async () => {
+      const res = await axios.get("http://localhost:3000/habits/", {});
+
+      const initHabits: Habit[] = res.data.map((r: Habit) => {
+        return {
+          ...r,
+          habitStatuses: [
+            { is_completed: true, targeted_date: "2023-03-05" },
+            { is_completed: true, targeted_date: "2023-03-06" },
+            { is_completed: true, targeted_date: "2023-03-07" },
+            { is_completed: true, targeted_date: "2023-03-08" },
+            { is_completed: false, targeted_date: "2023-03-09" },
+            { is_completed: false, targeted_date: "2023-03-10" },
+            { is_completed: false, targeted_date: "2023-03-11" },
+          ],
+        };
+      });
+
+      dispatch(initHabit(initHabits));
+    };
+
+    data();
+  }, []);
 
   const onChangeTitleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setHabitTitle(e.target.value);
