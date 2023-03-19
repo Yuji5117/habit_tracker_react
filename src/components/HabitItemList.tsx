@@ -12,8 +12,8 @@ const HabitItemList = ({ habits, dispatch }: PropsType) => {
   return (
     <Wrapper>
       <ItemList>
-        {habits.map((habit) => (
-          <Item key={habit.habitId}>
+        {habits.map((habit, index) => (
+          <Item key={index}>
             <HabitItem habit={habit} dispatch={dispatch} />
           </Item>
         ))}
