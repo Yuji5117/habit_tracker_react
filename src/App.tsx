@@ -30,15 +30,6 @@ function App() {
       const initHabits: Habit[] = res.data.map((r: Habit) => {
         return {
           ...r,
-          habitStatuses: [
-            { is_completed: true, targeted_date: "2023-03-05" },
-            { is_completed: true, targeted_date: "2023-03-06" },
-            { is_completed: true, targeted_date: "2023-03-07" },
-            { is_completed: true, targeted_date: "2023-03-08" },
-            { is_completed: false, targeted_date: "2023-03-09" },
-            { is_completed: false, targeted_date: "2023-03-10" },
-            { is_completed: false, targeted_date: "2023-03-11" },
-          ],
         };
       });
 
@@ -46,7 +37,7 @@ function App() {
     };
 
     data();
-  }, []);
+  }, [habits]);
 
   const onChangeTitleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setHabitTitle(e.target.value);
