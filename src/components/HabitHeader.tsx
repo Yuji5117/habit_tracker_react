@@ -5,10 +5,11 @@ import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import { DayOfWeekAction } from "../typings";
 import { moveNextWeek, movePreviousWeek } from "../actions/moveDayOfWeekAction";
+import { Dayjs } from "dayjs";
 
 interface PropsType {
-  startDayOfWeek: any;
-  endDayOfWeek: any;
+  startDayOfWeek: Dayjs;
+  endDayOfWeek: Dayjs;
   dayOfWeekDispatch: (action: DayOfWeekAction) => void;
 }
 

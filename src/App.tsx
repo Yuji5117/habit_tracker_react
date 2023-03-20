@@ -6,12 +6,12 @@ import HabitHeader from "./components/HabitHeader";
 import HabitItemList from "./components/HabitItemList";
 import { Habit } from "./typings";
 import { habitsReducer } from "./reducer/habitsReducer";
-import dayjs from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 import { dayOfWeekReducer } from "./reducer/dayOfWeekReducer";
 import axios from "axios";
 import { initHabit } from "./actions/habitsAction";
 
-const today = dayjs();
+const today: Dayjs = dayjs();
 
 function App() {
   const [habits, dispatch] = useReducer(habitsReducer, []);
@@ -32,13 +32,7 @@ function App() {
         },
       });
 
-      const initHabits: Habit[] = res.data.map((r: Habit) => {
-        return {
-          ...r,
-        };
-      });
-
-      dispatch(initHabit(initHabits));
+      dispatch(initHabit(res.data));
     };
 
     data();
