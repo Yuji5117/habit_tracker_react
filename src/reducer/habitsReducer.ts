@@ -2,11 +2,19 @@ import axios from "axios";
 import { HabitsAction, Habit } from "../typings";
 
 const addHabit = async (title: string) => {
-  const res = await axios.post("http://localhost:3000/habits/", {
+  return await axios.post("http://localhost:3000/habits/", {
     title: title,
   });
+};
 
-  return res;
+const updateHabitTitle = async (habitId: number, habitTitle: string) => {
+  return await axios.put(`http://localhost:3000/habits/${habitId}`, {
+    title: habitTitle,
+  });
+};
+
+const deleteHabit = async (habitId: number) => {
+  return await axios.delete(`http://localhost:3000/habits/${habitId}`);
 };
 
 export const habitsReducer = (state: Habit[], action: HabitsAction): any => {
@@ -38,6 +46,8 @@ export const habitsReducer = (state: Habit[], action: HabitsAction): any => {
     return state.map((habit) => {
       if (habit.habitId !== action.habitId) return habit;
 
+      const res = updateHabitTitle(action.habitId, action.habitTitle);
+
       return { ...habit, title: action.habitTitle };
     });
   }
@@ -60,6 +70,7 @@ export const habitsReducer = (state: Habit[], action: HabitsAction): any => {
   }
 
   if (action.type === "DELETE_HABIT") {
+    const res = deleteHabit(action.habitId);
     return state.filter((habit) => habit.habitId !== action.habitId);
   }
 };
