@@ -25,7 +25,12 @@ function App() {
   useEffect(() => {
     setHabitTitle("");
     const data = async () => {
-      const res = await axios.get("http://localhost:3000/habits/", {});
+      const res = await axios.get("http://localhost:3000/habits/", {
+        params: {
+          startDayOfWeek: dayOfWeek.startDay.format("YYYY-MM-DD"),
+          endDayOfWeek: dayOfWeek.endDay.format("YYYY-MM-DD"),
+        },
+      });
 
       const initHabits: Habit[] = res.data.map((r: Habit) => {
         return {
@@ -37,7 +42,7 @@ function App() {
     };
 
     data();
-  }, [habits]);
+  }, [dayOfWeek]);
 
   const onChangeTitleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setHabitTitle(e.target.value);
