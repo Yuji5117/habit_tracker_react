@@ -4,7 +4,6 @@ import styled from "styled-components";
 import HabitForm from "./components/HabitForm";
 import HabitHeader from "./components/HabitHeader";
 import HabitItemList from "./components/HabitItemList";
-import { Habit } from "./typings";
 import { habitsReducer } from "./reducer/habitsReducer";
 import dayjs, { Dayjs } from "dayjs";
 import { dayOfWeekReducer } from "./reducer/dayOfWeekReducer";
@@ -36,7 +35,7 @@ function App() {
     };
 
     data();
-  }, [dayOfWeek]);
+  }, [dayOfWeek, habits.length]);
 
   const onChangeTitleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setHabitTitle(e.target.value);

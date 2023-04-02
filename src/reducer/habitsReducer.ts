@@ -19,7 +19,7 @@ const deleteHabit = async (habitId: number) => {
 
 export const habitsReducer = (state: Habit[], action: HabitsAction): any => {
   if (action.type === "INIT_HABIT") {
-    return action.habits;
+    return [...action.habits];
   }
 
   if (action.type === "ADD_HABIT") {
