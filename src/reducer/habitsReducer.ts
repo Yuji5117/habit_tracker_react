@@ -59,10 +59,10 @@ export const habitsReducer = (state: Habit[], action: HabitsAction): any => {
       if (habit.habitId !== action.habitId) return habit;
 
       const updatedHabitStatuses = habit.habitStatuses.map((habitStatus) => {
-        if (habitStatus.targeted_date !== action.habitStatus.targeted_date)
+        if (habitStatus.targetedDate !== action.habitStatus.targetedDate)
           return habitStatus;
 
-        return { ...habitStatus, is_completed: !habitStatus.is_completed };
+        return { ...habitStatus, is_completed: !habitStatus.isCompleted };
       });
 
       return { ...habit, habitStatuses: updatedHabitStatuses };

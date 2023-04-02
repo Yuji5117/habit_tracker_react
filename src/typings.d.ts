@@ -7,8 +7,10 @@ export interface Habit {
 }
 
 interface HabitStatus {
-  is_completed: boolean;
-  targeted_date: string;
+  habitStatusId: number;
+  habitId: number;
+  isCompleted: boolean;
+  targetedDate: string;
 }
 
 export type HabitsAction =

@@ -70,8 +70,8 @@ const HabitItem = ({ habit, dispatch }: PropsType) => {
             <StatusDay key={index}>
               <input
                 type="checkbox"
-                value={habitStatus.targeted_date}
-                checked={habitStatus.is_completed}
+                value={habitStatus.targetedDate}
+                checked={habitStatus.isCompleted}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                   dispatch(updateHabitStatus(e, habit.habitId, habitStatus));
                 }}
