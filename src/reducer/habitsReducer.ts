@@ -27,16 +27,14 @@ export const habitsReducer = (state: Habit[], action: HabitsAction): any => {
   }
 
   if (action.type === "UPDATE_HABIT_STATUS") {
-    action.event.preventDefault();
-
     return state.map((habit) => {
-      if (habit.habitId !== action.habitId) return habit;
+      if (habit.habitId !== action.habitStatus.habitId) return habit;
 
       const updatedHabitStatuses = habit.habitStatuses.map((habitStatus) => {
         if (habitStatus.targetedDate !== action.habitStatus.targetedDate)
           return habitStatus;
 
-        return { ...habitStatus, is_completed: !habitStatus.isCompleted };
+        return { ...habitStatus, isCompleted: action.habitStatus.isCompleted };
       });
 
       return { ...habit, habitStatuses: updatedHabitStatuses };

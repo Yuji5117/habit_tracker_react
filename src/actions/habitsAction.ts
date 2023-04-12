@@ -20,12 +20,8 @@ export const updateTitle = (
   return { type: "UPDATE_TITLE", habitId, habitTitle };
 };
 
-export const updateHabitStatus = (
-  event: React.ChangeEvent<HTMLInputElement>,
-  habitId: number,
-  habitStatus: HabitStatus
-): HabitsAction => {
-  return { type: "UPDATE_HABIT_STATUS", habitId, habitStatus, event };
+export const updateHabitStatus = (habitStatus: HabitStatus): HabitsAction => {
+  return { type: "UPDATE_HABIT_STATUS", habitStatus };
 };
 
 export const removeHabit = (habitId: number): HabitsAction => {

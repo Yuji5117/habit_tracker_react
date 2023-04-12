@@ -31,9 +31,7 @@ export type HabitsAction =
     }
   | {
       type: "UPDATE_HABIT_STATUS";
-      habitId: number;
       habitStatus: HabitStatus;
-      event: React.ChangeEvent<HTMLInputElement>;
     }
   | {
       type: "REMOVE_HABIT";

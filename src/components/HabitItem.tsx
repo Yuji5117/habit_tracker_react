@@ -11,6 +11,7 @@ import {
 } from "../actions/habitsAction";
 import { updateHabit } from "../api/updateHabit";
 import { deleteHabit } from "../api/deleteHabit";
+import { createHabitStatus } from "../api/createHabitStatus";
 
 interface PropsType {
   habit: Habit;
@@ -76,8 +77,15 @@ const HabitItem = ({ habit, dispatch }: PropsType) => {
                 type="checkbox"
                 value={habitStatus.targetedDate}
                 checked={habitStatus.isCompleted}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  dispatch(updateHabitStatus(e, habit.habitId, habitStatus));
+                onChange={async () => {
+                  const res = await createHabitStatus(
+                    habitStatus.habitId,
+                    !habitStatus.isCompleted,
+                    new Date(habitStatus.targetedDate)
+                  );
+
+                  console.log(res);
+                  dispatch(updateHabitStatus(res.data));
                 }}
               />
             </StatusDay>
