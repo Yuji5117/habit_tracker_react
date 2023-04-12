@@ -20,8 +20,8 @@ export type HabitsAction =
     }
   | {
       type: "ADD_HABIT";
+      habitId: number;
       habitTitle: string;
-      event: React.MouseEvent<HTMLButtonElement>;
     }
   | {
       type: "UPDATE_TITLE";

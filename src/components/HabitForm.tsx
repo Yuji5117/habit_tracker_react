@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { addHabit } from "../actions/habitsAction";
 import { HabitsAction } from "../typings";
+import { createHabit } from "../api/createHabit";
 
 interface PropsType {
   habitTitle: string;
@@ -19,9 +20,11 @@ const HabitForm = ({ habitTitle, dispatch, onChangeTitleInput }: PropsType) => {
         value={habitTitle}
       />
       <Button
-        onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
-          dispatch(addHabit(e, habitTitle))
-        }
+        onClick={async (e: React.MouseEvent<HTMLButtonElement>) => {
+          e.preventDefault();
+          const res = await createHabit(habitTitle);
+          dispatch(addHabit(res.data.habitId, habitTitle));
+        }}
         type="submit"
       >
         追加

@@ -5,11 +5,8 @@ export const initHabit = (habits: Habit[]): HabitsAction => {
   return { type: "INIT_HABIT", habits };
 };
 
-export const addHabit = (
-  event: React.MouseEvent<HTMLButtonElement>,
-  habitTitle: string
-): HabitsAction => {
-  return { type: "ADD_HABIT", habitTitle, event };
+export const addHabit = (habitId: number, habitTitle: string): HabitsAction => {
+  return { type: "ADD_HABIT", habitId, habitTitle };
 };
 
 export const updateTitle = (

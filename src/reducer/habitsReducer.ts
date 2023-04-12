@@ -1,12 +1,6 @@
 import axios from "axios";
 import { HabitsAction, Habit } from "../typings";
 
-const addHabit = async (title: string) => {
-  return await axios.post("http://localhost:3000/habits/", {
-    title: title,
-  });
-};
-
 const updateHabitTitle = async (habitId: number, habitTitle: string) => {
   return await axios.put(`http://localhost:3000/habits/${habitId}`, {
     title: habitTitle,
@@ -23,17 +17,12 @@ export const habitsReducer = (state: Habit[], action: HabitsAction): any => {
   }
 
   if (action.type === "ADD_HABIT") {
-    action.event.preventDefault();
     if (!action.habitTitle) return state;
-
-    const response = addHabit(action.habitTitle);
-
-    console.warn("処理」", response);
 
     return [
       ...state,
       {
-        habitId: state.length + 1,
+        habitId: action.habitId,
         title: action.habitTitle,
         habitStatuses: [],
       },
