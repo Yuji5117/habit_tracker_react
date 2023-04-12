@@ -26,7 +26,7 @@ export const habitsReducer = (state: Habit[], action: HabitsAction): any => {
     });
   }
 
-  if (action.type === "UPDATE_HABIT_STATUS") {
+  if (action.type === "CHANGE_HABIT_STATUS") {
     return state.map((habit) => {
       if (habit.habitId !== action.habitStatus.habitId) return habit;
 

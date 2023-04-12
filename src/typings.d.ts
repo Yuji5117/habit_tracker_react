@@ -30,7 +30,7 @@ export type HabitsAction =
       habitTitle: string;
     }
   | {
-      type: "UPDATE_HABIT_STATUS";
+      type: "CHANGE_HABIT_STATUS";
       habitStatus: HabitStatus;
     }
   | {

@@ -4,14 +4,10 @@ import { HabitsAction, Habit } from "../typings";
 
 import { MdDeleteOutline } from "react-icons/md";
 import { AiOutlineEdit } from "react-icons/ai";
-import {
-  removeHabit,
-  updateHabitStatus,
-  updateTitle,
-} from "../actions/habitsAction";
+import { removeHabit, updateTitle } from "../actions/habitsAction";
 import { updateHabit } from "../api/updateHabit";
 import { deleteHabit } from "../api/deleteHabit";
-import { createHabitStatus } from "../api/createHabitStatus";
+import HabitStatus from "./HabitStatus";
 
 interface PropsType {
   habit: Habit;
@@ -73,20 +69,12 @@ const HabitItem = ({ habit, dispatch }: PropsType) => {
         <StatusWeekDay>
           {habit.habitStatuses.map((habitStatus, index) => (
             <StatusDay key={index}>
-              <input
-                type="checkbox"
-                value={habitStatus.targetedDate}
-                checked={habitStatus.isCompleted}
-                onChange={async () => {
-                  const res = await createHabitStatus(
-                    habitStatus.habitId,
-                    !habitStatus.isCompleted,
-                    new Date(habitStatus.targetedDate)
-                  );
-
-                  console.log(res);
-                  dispatch(updateHabitStatus(res.data));
-                }}
+              <HabitStatus
+                habitId={habitStatus.habitId}
+                isCompleted={habitStatus.isCompleted}
+                targetedDate={habitStatus.targetedDate}
+                habitStatusId={habitStatus.habitStatusId}
+                dispatch={dispatch}
               />
             </StatusDay>
           ))}

@@ -20,8 +20,8 @@ export const updateTitle = (
   return { type: "UPDATE_TITLE", habitId, habitTitle };
 };
 
-export const updateHabitStatus = (habitStatus: HabitStatus): HabitsAction => {
-  return { type: "UPDATE_HABIT_STATUS", habitStatus };
+export const changeHabitStatus = (habitStatus: HabitStatus): HabitsAction => {
+  return { type: "CHANGE_HABIT_STATUS", habitStatus };
 };
 
 export const removeHabit = (habitId: number): HabitsAction => {
