@@ -5,7 +5,7 @@ export const createHabitStatus = async (
   isCompleted: boolean,
   targetedDate: Date
 ) => {
-  return await axios.post(`http://localhost:3000/habits/${habitId}/status/`, {
+  return await axios.post(`http://localhost:3000/habits/${habitId}/statuses/`, {
     isCompleted,
     targetedDate,
   });
