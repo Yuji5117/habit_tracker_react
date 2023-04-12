@@ -1,15 +1,4 @@
-import axios from "axios";
 import { HabitsAction, Habit } from "../typings";
-
-const updateHabitTitle = async (habitId: number, habitTitle: string) => {
-  return await axios.put(`http://localhost:3000/habits/${habitId}`, {
-    title: habitTitle,
-  });
-};
-
-const deleteHabit = async (habitId: number) => {
-  return await axios.delete(`http://localhost:3000/habits/${habitId}`);
-};
 
 export const habitsReducer = (state: Habit[], action: HabitsAction): any => {
   if (action.type === "INIT_HABIT") {
@@ -30,12 +19,8 @@ export const habitsReducer = (state: Habit[], action: HabitsAction): any => {
   }
 
   if (action.type === "UPDATE_TITLE") {
-    action.event.preventDefault();
-
     return state.map((habit) => {
       if (habit.habitId !== action.habitId) return habit;
-
-      const res = updateHabitTitle(action.habitId, action.habitTitle);
 
       return { ...habit, title: action.habitTitle };
     });
@@ -58,8 +43,7 @@ export const habitsReducer = (state: Habit[], action: HabitsAction): any => {
     });
   }
 
-  if (action.type === "DELETE_HABIT") {
-    const res = deleteHabit(action.habitId);
+  if (action.type === "REMOVE_HABIT") {
     return state.filter((habit) => habit.habitId !== action.habitId);
   }
 };

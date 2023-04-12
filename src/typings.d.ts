@@ -27,7 +27,6 @@ export type HabitsAction =
       type: "UPDATE_TITLE";
       habitId: number;
       habitTitle: string;
-      event: React.MouseEvent<HTMLButtonElement>;
     }
   | {
       type: "UPDATE_HABIT_STATUS";
@@ -36,7 +35,7 @@ export type HabitsAction =
       event: React.ChangeEvent<HTMLInputElement>;
     }
   | {
-      type: "DELETE_HABIT";
+      type: "REMOVE_HABIT";
       habitId: number;
     };
 

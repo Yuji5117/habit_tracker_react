@@ -5,10 +5,12 @@ import { HabitsAction, Habit } from "../typings";
 import { MdDeleteOutline } from "react-icons/md";
 import { AiOutlineEdit } from "react-icons/ai";
 import {
-  deleteHabit,
+  removeHabit,
   updateHabitStatus,
   updateTitle,
 } from "../actions/habitsAction";
+import { updateHabit } from "../api/updateHabit";
+import { deleteHabit } from "../api/deleteHabit";
 
 interface PropsType {
   habit: Habit;
@@ -45,8 +47,10 @@ const HabitItem = ({ habit, dispatch }: PropsType) => {
             />
             <div>
               <button
-                onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-                  dispatch(updateTitle(e, habit.habitId, title));
+                onClick={async (e: React.MouseEvent<HTMLButtonElement>) => {
+                  e.preventDefault();
+                  const res = await updateHabit(habit.habitId, title);
+                  dispatch(updateTitle(res.data.habitId, res.data.title));
                   setIsEditMode(false);
                 }}
               >
@@ -80,7 +84,12 @@ const HabitItem = ({ habit, dispatch }: PropsType) => {
           ))}
         </StatusWeekDay>
       </StatusBlock>
-      <DeleteBlock onClick={() => dispatch(deleteHabit(habit.habitId))}>
+      <DeleteBlock
+        onClick={async () => {
+          const res = await deleteHabit(habit.habitId);
+          dispatch(removeHabit(res.data.habitId));
+        }}
+      >
         <MdDeleteOutline size={20} color={"red"} />
       </DeleteBlock>
     </Wrapper>

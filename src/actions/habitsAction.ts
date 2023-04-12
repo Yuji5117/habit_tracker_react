@@ -10,11 +10,10 @@ export const addHabit = (habitId: number, habitTitle: string): HabitsAction => {
 };
 
 export const updateTitle = (
-  event: React.MouseEvent<HTMLButtonElement>,
   habitId: number,
   habitTitle: string
 ): HabitsAction => {
-  return { type: "UPDATE_TITLE", habitId, habitTitle, event };
+  return { type: "UPDATE_TITLE", habitId, habitTitle };
 };
 
 export const updateHabitStatus = (
@@ -25,6 +24,6 @@ export const updateHabitStatus = (
   return { type: "UPDATE_HABIT_STATUS", habitId, habitStatus, event };
 };
 
-export const deleteHabit = (habitId: number): HabitsAction => {
-  return { type: "DELETE_HABIT", habitId };
+export const removeHabit = (habitId: number): HabitsAction => {
+  return { type: "REMOVE_HABIT", habitId };
 };
