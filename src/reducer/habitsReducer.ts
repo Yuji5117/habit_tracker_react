@@ -13,7 +13,7 @@ export const habitsReducer = (state: Habit[], action: HabitsAction): any => {
       {
         habitId: action.habitId,
         title: action.habitTitle,
-        habitStatuses: [],
+        habitStatuses: action.habitStatuses,
       },
     ];
   }

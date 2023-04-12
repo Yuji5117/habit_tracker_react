@@ -5,8 +5,12 @@ export const initHabit = (habits: Habit[]): HabitsAction => {
   return { type: "INIT_HABIT", habits };
 };
 
-export const addHabit = (habitId: number, habitTitle: string): HabitsAction => {
-  return { type: "ADD_HABIT", habitId, habitTitle };
+export const addHabit = (
+  habitId: number,
+  habitTitle: string,
+  habitStatuses: HabitStatus[]
+): HabitsAction => {
+  return { type: "ADD_HABIT", habitId, habitTitle, habitStatuses };
 };
 
 export const updateTitle = (

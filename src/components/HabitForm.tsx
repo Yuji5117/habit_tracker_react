@@ -8,9 +8,15 @@ interface PropsType {
   habitTitle: string;
   dispatch: (action: HabitsAction) => void;
   onChangeTitleInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  startDayOfWeek: any;
 }
 
-const HabitForm = ({ habitTitle, dispatch, onChangeTitleInput }: PropsType) => {
+const HabitForm = ({
+  habitTitle,
+  dispatch,
+  onChangeTitleInput,
+  startDayOfWeek,
+}: PropsType) => {
   return (
     <Form>
       <Input
@@ -22,8 +28,14 @@ const HabitForm = ({ habitTitle, dispatch, onChangeTitleInput }: PropsType) => {
       <Button
         onClick={async (e: React.MouseEvent<HTMLButtonElement>) => {
           e.preventDefault();
-          const res = await createHabit(habitTitle);
-          dispatch(addHabit(res.data.habitId, habitTitle));
+          const res = await createHabit(
+            habitTitle,
+            startDayOfWeek.format("YYYY-MM-DD")
+          );
+
+          dispatch(
+            addHabit(res.data.habitId, res.data.title, res.data.habitStatuses)
+          );
         }}
         type="submit"
       >

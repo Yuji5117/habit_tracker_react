@@ -35,7 +35,7 @@ function App() {
     };
 
     data();
-  }, [dayOfWeek, habits.length]);
+  }, [dayOfWeek]);
 
   const onChangeTitleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setHabitTitle(e.target.value);
@@ -49,6 +49,7 @@ function App() {
           habitTitle={habitTitle}
           dispatch={dispatch}
           onChangeTitleInput={onChangeTitleInput}
+          startDayOfWeek={dayOfWeek.startDay}
         />
 
         <Section>

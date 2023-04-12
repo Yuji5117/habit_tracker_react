@@ -22,6 +22,7 @@ export type HabitsAction =
       type: "ADD_HABIT";
       habitId: number;
       habitTitle: string;
+      habitStatuses: HabitStatus[];
     }
   | {
       type: "UPDATE_TITLE";
