@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { HabitsAction, Habit } from "../typings";
+import { HabitsAction, Habit } from "../types";
 
 import { MdDeleteOutline } from "react-icons/md";
 import { AiOutlineEdit } from "react-icons/ai";

@@ -1,5 +1,6 @@
-import React from "react";
-import { Habit, HabitsAction, HabitStatus } from "./../typings.d";
+// import { Habit, HabitsAction, HabitStatus } from "../types/index";
+
+import { Habit, HabitStatus, HabitsAction } from "../types";
 
 export const initHabit = (habits: Habit[]): HabitsAction => {
   return { type: "INIT_HABIT", habits };

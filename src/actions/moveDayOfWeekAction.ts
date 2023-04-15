@@ -1,4 +1,4 @@
-import { DayOfWeekAction } from "./../typings.d";
+import { DayOfWeekAction } from "../types/index";
 
 export const movePreviousWeek = (): DayOfWeekAction => {
   return { type: "MOVE_PREVIOUS_WEEK" };

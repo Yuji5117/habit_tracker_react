@@ -1,14 +1,14 @@
 import React, { useEffect, useState, useReducer } from "react";
 import styled from "styled-components";
 
-import HabitForm from "./components/HabitForm";
-import HabitHeader from "./components/HabitHeader";
-import HabitItemList from "./components/HabitItemList";
-import { habitsReducer } from "./reducer/habitsReducer";
+import HabitForm from "./features/habits/components/HabitForm";
+import HabitHeader from "./features/habits/components/HabitHeader";
+import HabitItemList from "./features/habits/components/HabitItemList";
+import { habitsReducer } from "./features/habits/reducer/habitsReducer";
 import dayjs, { Dayjs } from "dayjs";
 import { dayOfWeekReducer } from "./reducer/dayOfWeekReducer";
 import axios from "axios";
-import { initHabit } from "./actions/habitsAction";
+import { initHabit } from "./features/habits/actions/habitsAction";
 
 const today: Dayjs = dayjs();
 

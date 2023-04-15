@@ -6,7 +6,7 @@ export interface Habit {
   updatedAt?: Date;
 }
 
-interface HabitStatus {
+export interface HabitStatus {
   habitStatusId: number;
   habitId: number;
   isCompleted: boolean;
@@ -36,17 +36,4 @@ export type HabitsAction =
   | {
       type: "REMOVE_HABIT";
       habitId: number;
-    };
-
-export interface DayOfWeek {
-  startDay: dayjs.Dayjs;
-  endDay: dayjs.Dayjs;
-}
-
-export type DayOfWeekAction =
-  | {
-      type: "MOVE_PREVIOUS_WEEK";
-    }
-  | {
-      type: "MOVE_NEXT_WEEK";
     };

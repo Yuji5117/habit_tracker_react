@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import HabitItem from "./HabitItem";
 
-import { HabitsAction, Habit } from "../typings";
+import { HabitsAction, Habit } from "../types/index";
 
 interface PropsType {
   habits: Habit[];
