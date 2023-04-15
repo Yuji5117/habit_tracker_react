@@ -1,5 +1,3 @@
-// import { Habit, HabitsAction, HabitStatus } from "../types";
-
 import { Habit, HabitStatus, HabitsAction } from "../types";
 
 export const initHabit = (habits: Habit[]): HabitsAction => {
