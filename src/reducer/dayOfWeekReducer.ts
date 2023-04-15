@@ -1,4 +1,4 @@
-import { DayOfWeek, DayOfWeekAction } from "../types/index";
+import { DayOfWeek, DayOfWeekAction } from "../types";
 
 export const dayOfWeekReducer = (state: DayOfWeek, action: DayOfWeekAction) => {
   switch (action.type) {

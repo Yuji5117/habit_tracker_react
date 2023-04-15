@@ -1,4 +1,4 @@
-import { DayOfWeekAction } from "../types/index";
+import { DayOfWeekAction } from "../types";
 
 export const movePreviousWeek = (): DayOfWeekAction => {
   return { type: "MOVE_PREVIOUS_WEEK" };

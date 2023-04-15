@@ -1,4 +1,4 @@
-// import { Habit, HabitsAction, HabitStatus } from "../types/index";
+// import { Habit, HabitsAction, HabitStatus } from "../types";
 
 import { Habit, HabitStatus, HabitsAction } from "../types";
 

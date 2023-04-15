@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { addHabit } from "../actions/habitsAction";
-import { HabitsAction } from "../types/index";
+import { HabitsAction } from "../types";
 import { createHabit } from "../api/createHabit";
 
 interface PropsType {

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
-import { DayOfWeekAction } from "@/types/index";
+import { DayOfWeekAction } from "@/types/";
 import {
   moveNextWeek,
   movePreviousWeek,

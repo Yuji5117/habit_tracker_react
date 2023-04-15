@@ -1,4 +1,4 @@
-import { HabitsAction, Habit } from "../types/index";
+import { HabitsAction, Habit } from "../types";
 
 export const habitsReducer = (state: Habit[], action: HabitsAction): any => {
   if (action.type === "INIT_HABIT") {
